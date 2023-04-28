@@ -34,6 +34,16 @@
 			Open-Meteo là một API thời tiết nguồn mở với quyền truy cập miễn phí cho mục đích sử dụng phi thương mại. Không cần khóa API. Bạn có thể sử dụng nó ngay lập tức!
 
 --------------------------------------------------------------------------
+Git push/commit code:
+- >>>git init
+- >>>git status
+- >>>git add --all
+- >>>git commit -m "commit"
+- >>>git branch -M main
+- >>>git remote add origin https://github.com/filezingme/NextJS-vs-ChatGPT4.git
+- >>>git push -u origin main
+
+--------------------------------------------------------------------------
 Giải thích CSS:
 	"Flex" là một thuật ngữ trong CSS, đại diện cho thuộc tính "display: flex". Thuộc tính này được sử dụng để tạo ra các bố cục linh hoạt và dễ dàng điều chỉnh trong thiết kế giao diện web. Với thuộc tính flex, các phần tử HTML có thể tự động điều chỉnh kích thước và vị trí bên trong một container, tạo ra các bố cục đáp ứng và linh hoạt trên nhiều kích thước màn hình khác nhau.	
 	"min-h-screen" là một lớp (class) được định nghĩa sẵn trong framework CSS như Tailwind, có ý nghĩa là thiết lập chiều cao tối thiểu cho phần tử đó bằng chiều cao của màn hình (viewport).
@@ -337,3 +347,4 @@ Giải thích NextJS/ReactJS/JS:
 			
 		]
 		
+		https://youtu.be/DS5TZCn-pk8?t=3444
