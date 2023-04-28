@@ -344,7 +344,102 @@ Giải thích NextJS/ReactJS/JS:
 	- Create 'stepzen-weather-app-youtube\app\location\[city]\[lat]\[long]\page.tsx'
 		> Gõ 'rfce' để gen code tự động cho function component
 		- Code [
-			
+			type Props = {
+				params: {
+					city: string,
+					lat: string,
+					long: string,
+				}
+			}
+
+			function WeatherPage({params: {city, lat, long}}: Props) {
+			  return (
+				<div>Weather Page: {city} {lat} {long}</div>
+			  )
+			}
+
+			export default WeatherPage
 		]
+			
+-----------------------------------
+* 58:11 Explaining the Free Weather API
+	> https://open-meteo.com/
+		> Open-meteo.com là một dịch vụ cung cấp dữ liệu thời tiết miễn phí và mở cho cộng đồng, được phát triển bởi một nhóm các nhà phát triển phần mềm và chuyên gia về khí tượng học. Trang web cung cấp các tập dữ liệu thời tiết đa dạng, bao gồm dữ liệu hiện tại, dự báo, radar, v.v. Tất cả các dữ liệu này được thu thập từ các nguồn khác nhau trên toàn cầu và được tổng hợp lại để cung cấp thông tin thời tiết chính xác và chi tiết.
+
+		Open-meteo.com cũng cung cấp các API (giao diện lập trình ứng dụng) để cho các nhà phát triển có thể truy cập dữ liệu thời tiết và tích hợp chúng vào các ứng dụng của họ. Điều này giúp cho việc phát triển các ứng dụng về thời tiết trở nên dễ dàng hơn và giúp cho người dùng có được truy cập vào thông tin thời tiết đáng tin cậy.
+
+		Tổng quan, Open-meteo.com là một nỗ lực đáng kinh ngạc để cung cấp dữ liệu thời tiết miễn phí và mở cho mọi người, giúp cải thiện việc tiên đoán thời tiết và nâng cao sự hiểu biết về khí hậu.
+			
+-----------------------------------
+* 59:24 Implementing StepZen
+* 1:02:14 Implementing the Free Weather API with StepZen
+	> https://stepzen.com/
+		> StepZen là một nền tảng giúp cho việc tạo ra các API (giao diện lập trình ứng dụng) dễ dàng hơn và nhanh chóng hơn. Nó cho phép các nhà phát triển xây dựng các API đa dạng bằng cách sử dụng các nguồn dữ liệu khác nhau, chẳng hạn như cơ sở dữ liệu SQL hay các API bên ngoài.
+
+			StepZen sử dụng một ngôn ngữ truy vấn (query language) có tên là GraphQL để cho phép các nhà phát triển xác định cách mà dữ liệu sẽ được truy xuất và trả về. Các nhà phát triển cũng có thể sử dụng các trình đơn đặc biệt để tạo ra các API theo ý muốn của họ.
+
+			Một trong những ưu điểm của StepZen là nó giúp cho việc phát triển các API trở nên nhanh chóng và dễ dàng hơn. Nó cũng cung cấp các tính năng bảo mật như xác thực người dùng và quản lý quyền truy cập.
+
+			StepZen được sử dụng bởi các công ty và tổ chức khác nhau để tạo ra các API phục vụ cho các ứng dụng web và di động. Nó cũng cung cấp các công cụ và tài liệu để hỗ trợ các nhà phát triển trong quá trình sử dụng nền tảng của nó.
 		
-		https://youtu.be/DS5TZCn-pk8?t=3444
+		- Tạo tài khoản:
+			- Không cần tạo, dùng luôn tài khoản github 'Sign in with GitHub'
+			
+		>>> npm install -g stepzen
+			> ref 'https://stepzen.com/docs/quick-start/install-and-setup#install-stepzen'
+			
+		- Tạo thư mục 'stepzen':
+			'\stepzen-weather-app-youtube\stepzen'
+			
+		>>> stepzen login
+			> Lưu ý chạy terminal này trong thư mục '\stepzen-weather-app-youtube\stepzen'
+			- Yêu cầu điền các thông tin thì điền như sau:
+				What is your account name?: tubarao
+				What is your admin key?: ******************************************************************************************
+				You have successfully logged in with the tubarao account.
+			
+				> Lưu ý 'account name' và 'admin key' check ở đây (phải login tài khoản GitHub như nói bên trên) 
+					'https://dashboard.stepzen.com/account'
+			
+
+	- Truy cập 'https://open-meteo.com/en/docs'
+		- Check các option sau:
+			- Section 'Select Coordinates or City'
+				> 'Select city': Hanoi
+			- Section 'Hourly Weather Variables'
+				> 'Temperature (2 m)': checked
+				> 'Relative Humidity (2 m)': checked
+				> 'Dewpoint (2 m)': checked
+				> 'Apparent Temperature': checked
+				
+				- Section 'Additional Variables'
+					> 'UV Index': checked
+					> 'UV Index Clear Sky': checked
+					
+			- Section 'Daily Weather Variables (*)'
+				> 'Weathercode': checked
+				> 'Maximum Temperature (2 m)': checked
+					
+			- Section 'Settings'
+				> 'Current weather with temperature, windspeed and weather code': checked
+				> 'Timezone': Asia/Bangkok
+				
+		- Copy url trong trường 'API URL':
+			> Url tự gen ra như này: 					'https://api.open-meteo.com/v1/forecast?latitude=21.02&longitude=105.84&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,uv_index,uv_index_clear_sky&daily=weathercode,temperature_2m_max&current_weather=true&timezone=Asia%2FBangkok'
+			
+				> Truy cập thử xem kết quả trả về JSON không
+			
+	- Create 'stepzen-weather-app-youtube\testCurl.txt'
+		- Paste 'API URL' bên trên vào file này để lưu trữ cho nhớ thôi
+	
+	>>> stepzen init 
+		> Lưu ý chạy terminal này trong thư mục '\stepzen-weather-app-youtube\stepzen'
+		- Điền các thông tin yêu cầu:
+			> '? What would you like your endpoint to be called? (api/aged-indri)': Để blank và enter thôi
+			
+	>>> stepzen import curl "https://api.open-meteo.com/v1/forecast?latitude=21.02&longitude=105.84&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,uv_index,uv_index_clear_sky&daily=weathercode,temperature_2m_max&current_weather=true&timezone=Asia%2FBangkok" --header "Authentication: 123"
+			
+		> Chạy xong báo 'Successfully imported curl data source into your GraphQL schema' là ok
+		> Sẽ tạo ra file 'stepzen-weather-app-youtube\stepzen\curl\index.graphql'
+		> ref 'https://stepzen.com/docs/quick-start'
+		

@@ -8,7 +8,7 @@ type Props = {
 
 function WeatherPage({params: {city, lat, long}}: Props) {
   return (
-    <div>WeatherPage</div>
+    <div>Weather Page: {city} {lat} {long}</div>
   )
 }
 

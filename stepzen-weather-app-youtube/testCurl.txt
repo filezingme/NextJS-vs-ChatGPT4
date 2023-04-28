@@ -1,0 +1,1 @@
+https://api.open-meteo.com/v1/forecast?latitude=21.02&longitude=105.84&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,uv_index,uv_index_clear_sky&daily=weathercode,temperature_2m_max&current_weather=true&timezone=Asia%2FBangkok
